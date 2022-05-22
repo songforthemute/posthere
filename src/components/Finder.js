@@ -6,14 +6,18 @@ import Profile from "../routes/Profile";
 import Navi from "./Navi";
 // Switch => Routes
 
-const Finder = ({ isLoggedIn }) => {
+const Finder = ({ isLoggedIn, userObj }) => {
     return (
         <HashRouter>
             {isLoggedIn && <Navi />}
             <Routes>
                 {isLoggedIn ? (
                     <>
-                        <Route exact path="/" element={<Home />} />
+                        <Route
+                            exact
+                            path="/"
+                            element={<Home userObj={userObj} />}
+                        />
                         <Route exact path="/profile" element={<Profile />} />
                     </>
                 ) : (
