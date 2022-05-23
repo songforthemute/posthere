@@ -10,6 +10,7 @@ const Auth = () => {
     const [password, setPassword] = useState("");
     const [newAccount, setNewAccount] = useState(true);
     const [error, setError] = useState("");
+
     const onChange = (e) => {
         const {
             target: { name, value },

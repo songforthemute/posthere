@@ -23,20 +23,16 @@ const Rweet = ({ rweetObj, isOwner }) => {
     };
 
     const onDeleteClick = async () => {
-        const ok = window.confirm(
-            "Are you sure you want to delete this rweet?"
-        );
+        const ok = window.confirm("Are you sure you want to delete this?");
         if (ok) {
             const rweetTextRef = doc(dbService, "rweets", `${rweetObj.id}`);
             await deleteDoc(rweetTextRef);
         }
     };
 
-    const onUpdateClick = async () => {};
-
     return (
         <div>
-            {editMode ? (
+            {isOwner && editMode ? (
                 <>
                     <form onSubmit={onSubmit}>
                         <input
@@ -53,12 +49,10 @@ const Rweet = ({ rweetObj, isOwner }) => {
             ) : (
                 <>
                     <h4>{rweetObj.text}</h4>
-                    {isOwner && (
-                        <>
-                            <button onClick={onDeleteClick}>Delete</button>
-                            <button onClick={toggleEditMode}>Edit</button>
-                        </>
-                    )}
+                    <>
+                        <button onClick={onDeleteClick}>Delete</button>
+                        <button onClick={toggleEditMode}>Edit</button>
+                    </>
                 </>
             )}
         </div>
