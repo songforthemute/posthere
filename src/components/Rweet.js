@@ -49,6 +49,16 @@ const Rweet = ({ rweetObj, isOwner }) => {
             ) : (
                 <>
                     <h4>{rweetObj.text}</h4>
+                    {rweetObj.downloadUrl && (
+                        <img
+                            src={rweetObj.downloadUrl}
+                            alt={
+                                rweetObj.text > 20
+                                    ? rweetObj.text.slice(0, 20)
+                                    : rweetObj.text
+                            }
+                        />
+                    )}
                     <>
                         <button onClick={onDeleteClick}>Delete</button>
                         <button onClick={toggleEditMode}>Edit</button>

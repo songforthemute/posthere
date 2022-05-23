@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { dbService } from "../firebase";
+import { dbService, storageService } from "../firebase";
 import {
     addDoc,
     collection,
@@ -8,12 +8,14 @@ import {
     query,
 } from "firebase/firestore";
 import Rweet from "../components/Rweet";
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
 
 const Home = ({ userObj }) => {
     const [rweet, setRweet] = useState("");
     const [rweets, setRweets] = useState([]); // setState에 함수를 전달하면 이전 값에 접근할 수 있음.
-    const [fileUrl, setFileUrl] = useState();
+    const [fileUrl, setFileUrl] = useState("");
 
+    // 포스트 리얼타임 렌더 파트
     useEffect(() => {
         // 쿼리 & getDocs를 이용하지 않고 snapshot을 이용하면 실시간 렌더 가능
         const q = query(
@@ -32,16 +34,25 @@ const Home = ({ userObj }) => {
     // 폼 제출
     const onSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await addDoc(collection(dbService, "rweets"), {
-                text: rweet,
-                createdAt: Date.now(),
-                creatorId: userObj.uid,
-            });
-            setRweet("");
-        } catch (error) {
-            console.warn(error);
+        let downloadUrl = "";
+        if (fileUrl !== "") {
+            // 업로드된 파일이 존재한다면
+            const fileRef = ref(storageService, `${userObj.uid}/${Date.now()}`);
+            const res = await uploadString(fileRef, fileUrl, "data_url");
+            downloadUrl = await getDownloadURL(res.ref);
         }
+        // try {
+        await addDoc(collection(dbService, "rweets"), {
+            text: rweet,
+            createdAt: Date.now(),
+            creatorId: userObj.uid,
+            downloadUrl,
+        });
+        setRweet("");
+        setFileUrl("");
+        // } catch (error) {
+        // console.warn(error);
+        // }
     };
 
     // 폼 - 텍스트 감지
@@ -75,6 +86,8 @@ const Home = ({ userObj }) => {
         fileInput.current.value = "";
         setFileUrl(null);
     };
+
+    // console.log(rweets);
 
     return (
         <div>
