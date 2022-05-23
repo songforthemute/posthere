@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { dbService } from "../firebase";
+import { dbService, storageService } from "../firebase";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
 
 const Rweet = ({ rweetObj, isOwner }) => {
     const [editMode, setEditMode] = useState(false);
@@ -25,8 +26,8 @@ const Rweet = ({ rweetObj, isOwner }) => {
     const onDeleteClick = async () => {
         const ok = window.confirm("Are you sure you want to delete this?");
         if (ok) {
-            const rweetTextRef = doc(dbService, "rweets", `${rweetObj.id}`);
-            await deleteDoc(rweetTextRef);
+            await deleteDoc(doc(dbService, "rweets", `${rweetObj.id}`));
+            await deleteObject(ref(storageService, rweetObj.storageUrl));
         }
     };
 
@@ -49,9 +50,9 @@ const Rweet = ({ rweetObj, isOwner }) => {
             ) : (
                 <>
                     <h4>{rweetObj.text}</h4>
-                    {rweetObj.downloadUrl && (
+                    {rweetObj.storageUrl && (
                         <img
-                            src={rweetObj.downloadUrl}
+                            src={rweetObj.storageUrl}
                             alt={
                                 rweetObj.text > 20
                                     ? rweetObj.text.slice(0, 20)

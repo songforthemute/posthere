@@ -34,19 +34,19 @@ const Home = ({ userObj }) => {
     // 폼 제출
     const onSubmit = async (e) => {
         e.preventDefault();
-        let downloadUrl = "";
+        let storageUrl = "";
         if (fileUrl !== "") {
             // 업로드된 파일이 존재한다면
             const fileRef = ref(storageService, `${userObj.uid}/${Date.now()}`);
             const res = await uploadString(fileRef, fileUrl, "data_url");
-            downloadUrl = await getDownloadURL(res.ref);
+            storageUrl = await getDownloadURL(res.ref);
         }
         // try {
         await addDoc(collection(dbService, "rweets"), {
             text: rweet,
             createdAt: Date.now(),
             creatorId: userObj.uid,
-            downloadUrl,
+            storageUrl,
         });
         setRweet("");
         setFileUrl("");
@@ -63,28 +63,32 @@ const Home = ({ userObj }) => {
         setRweet(value);
     };
 
-    // 폼 - 파일 업로드 감지 파트
+    // 파일 & 파일 미리보기 클리어 파트
+    const fileInput = useRef();
+    const onClearFile = () => {
+        fileInput.current.value = "";
+        setFileUrl(null);
+    };
+
+    // 폼 - 파일 업로드 감지 파트 & 파일 용량제한 10MB
     const onFileChange = (e) => {
         const {
             target: { files },
         } = e;
         const file = files[0]; // 한 개 이상의 파일을 받을 수 있지만 input에서 하나의 파일만 받고있음.
-        const reader = new FileReader(); // from fileReader & file api by MDN
-        reader.onloadend = (loaded) => {
-            const {
-                currentTarget: { result },
-            } = loaded;
-            setFileUrl(result);
-        };
-        reader.readAsDataURL(file);
-    };
-
-    // 파일 & 파일 미리보기 클리어 파트
-    const fileInput = useRef(); // 파일 클리어시 파일 날리기
-    const onClearFile = () => {
-        console.log(fileInput);
-        fileInput.current.value = "";
-        setFileUrl(null);
+        if (file.size > 10485760 / 11) {
+            alert("File size exceeded. Please upload a file less then 10MB.");
+            onClearFile();
+        } else {
+            const reader = new FileReader(); // from fileReader & file api by MDN
+            reader.onloadend = (loaded) => {
+                const {
+                    currentTarget: { result },
+                } = loaded;
+                setFileUrl(result);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     // console.log(rweets);
