@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authService, dbService } from "../firebase";
 import { query, collection, where, getDocs, orderBy } from "firebase/firestore";
-import { updateProfile } from "firebase/auth";
+import { updateProfile, signOut } from "firebase/auth";
 
-const Profile = ({ userObj }) => {
+const Profile = ({ refreshUser, userObj }) => {
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
 
     // 내 포스트 가져오기
@@ -34,15 +34,19 @@ const Profile = ({ userObj }) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        if (userObj.displayName !== newDisplayName)
-            await updateProfile(userObj, { displayName: newDisplayName });
+        if (userObj.displayName !== newDisplayName) {
+            await updateProfile(authService.currentUser, {
+                displayName: newDisplayName,
+            });
+            refreshUser();
+        }
     };
 
     // logout시, redirect 파트
     const navigate = useNavigate();
     const onLogOutClick = () => {
-        authService.signOut();
-        navigate("/");
+        signOut(authService);
+        navigate("/", { replace: true });
     };
 
     return (
