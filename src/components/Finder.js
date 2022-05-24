@@ -4,12 +4,12 @@ import Auth from "../routes/Auth";
 import Home from "../routes/Home";
 import Profile from "../routes/Profile";
 import Navi from "./Navi";
-// Switch => Routes
+// react-router v6: Switch => Routes
 
 const Finder = ({ isLoggedIn, userObj }) => {
     return (
         <HashRouter>
-            {isLoggedIn && <Navi />}
+            {isLoggedIn && <Navi userObj={userObj} />}
             <Routes>
                 {isLoggedIn ? (
                     <>
@@ -18,7 +18,11 @@ const Finder = ({ isLoggedIn, userObj }) => {
                             path="/"
                             element={<Home userObj={userObj} />}
                         />
-                        <Route exact path="/profile" element={<Profile />} />
+                        <Route
+                            exact
+                            path="/profile"
+                            element={<Profile userObj={userObj} />}
+                        />
                     </>
                 ) : (
                     <>

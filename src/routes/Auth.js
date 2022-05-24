@@ -18,6 +18,7 @@ const Auth = () => {
         if (name === "email") setEmail(value);
         else if (name === "password") setPassword(value);
     };
+
     const onSubmit = async (event) => {
         event.preventDefault();
         let data;
@@ -38,6 +39,7 @@ const Auth = () => {
             setError(error.message);
         }
     };
+
     const toggleAccount = () => setNewAccount((prev) => !prev);
 
     return (
