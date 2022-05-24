@@ -60,10 +60,12 @@ const Rweet = ({ rweetObj, isOwner }) => {
                             }
                         />
                     )}
-                    <>
-                        <button onClick={onDeleteClick}>Delete</button>
-                        <button onClick={toggleEditMode}>Edit</button>
-                    </>
+                    {isOwner && (
+                        <>
+                            <button onClick={onDeleteClick}>Delete</button>
+                            <button onClick={toggleEditMode}>Edit</button>
+                        </>
+                    )}
                 </>
             )}
         </div>

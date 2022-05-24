@@ -36,6 +36,9 @@ function App() {
                             photoURL: user.photoURL,
                         }),
                 });
+            } else {
+                setUserObj(null);
+            }
             setInit(true);
         });
     }, []);

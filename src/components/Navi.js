@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navi = ({ userObj }) => {
-    // console.log(userObj);
     return (
         <nav>
             <ul>
