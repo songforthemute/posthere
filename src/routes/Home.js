@@ -7,12 +7,12 @@ import {
     orderBy,
     query,
 } from "firebase/firestore";
-import Rweet from "../components/Rweet";
+import Post from "../components/Post";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 
 const Home = ({ userObj }) => {
-    const [rweet, setRweet] = useState("");
-    const [rweets, setRweets] = useState([]); // setState에 함수를 전달하면 이전 값에 접근할 수 있음.
+    const [post, setPost] = useState("");
+    const [posts, setPosts] = useState([]); // setState에 함수를 전달하면 이전 값에 접근할 수 있음.
     const [fileUrl, setFileUrl] = useState("");
 
     // 포스트 리얼타임 렌더 파트
@@ -23,11 +23,11 @@ const Home = ({ userObj }) => {
             orderBy("createdAt", "desc")
         );
         onSnapshot(q, (snapshot) => {
-            const rweetArr = snapshot.docs.map((doc) => ({
+            const postArr = snapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
             }));
-            setRweets(rweetArr);
+            setPosts(postArr);
         });
     }, []);
 
@@ -43,12 +43,12 @@ const Home = ({ userObj }) => {
         }
         // try {
         await addDoc(collection(dbService, "rweets"), {
-            text: rweet,
+            text: post,
             createdAt: Date.now(),
             creatorId: userObj.uid,
             storageUrl,
         });
-        setRweet("");
+        setPost("");
         setFileUrl("");
         // } catch (error) {
         // console.warn(error);
@@ -60,7 +60,7 @@ const Home = ({ userObj }) => {
         const {
             target: { value },
         } = e;
-        setRweet(value);
+        setPost(value);
     };
 
     // 파일 & 파일 미리보기 클리어 파트
@@ -77,6 +77,7 @@ const Home = ({ userObj }) => {
         } = e;
         const file = files[0]; // 한 개 이상의 파일을 받을 수 있지만 input에서 하나의 파일만 받고있음.
         if (file.size > 10485760 / 11) {
+            // 파일 클리어 했을때 콘솔에 에러 이슈 있음!!
             alert("File size exceeded. Please upload a file less then 10MB.");
             onClearFile();
         } else {
@@ -91,14 +92,14 @@ const Home = ({ userObj }) => {
         }
     };
 
-    // console.log(rweets);
+    // console.log(posts);
 
     return (
         <div>
             <form onSubmit={onSubmit}>
                 <input
                     type="text"
-                    value={rweet}
+                    value={post}
                     onChange={onChange}
                     placeholder="What's on your mind?"
                     maxLength={120}
@@ -109,7 +110,7 @@ const Home = ({ userObj }) => {
                     onChange={onFileChange}
                     ref={fileInput}
                 />
-                <input type="submit" value="Rweet" />
+                <input type="submit" value="Posthis" />
                 {fileUrl && (
                     <div>
                         <img src={fileUrl} alt="Attached" />
@@ -118,11 +119,11 @@ const Home = ({ userObj }) => {
                 )}
             </form>
             <div>
-                {rweets.map((rweet) => (
-                    <Rweet
-                        key={rweet.id}
-                        rweetObj={rweet}
-                        isOwner={rweet.creatorId === userObj.uid}
+                {posts.map((post) => (
+                    <Post
+                        key={post.id}
+                        postObj={post}
+                        isOwner={post.creatorId === userObj.uid}
                     />
                 ))}
             </div>

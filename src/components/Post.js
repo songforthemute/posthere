@@ -3,9 +3,9 @@ import { dbService, storageService } from "../firebase";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 
-const Rweet = ({ rweetObj, isOwner }) => {
+const Post = ({ postObj, isOwner }) => {
     const [editMode, setEditMode] = useState(false);
-    const [edited, setEdited] = useState(rweetObj.text);
+    const [edited, setEdited] = useState(postObj.text);
 
     const toggleEditMode = () => setEditMode((prev) => !prev);
 
@@ -18,16 +18,16 @@ const Rweet = ({ rweetObj, isOwner }) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const rweetTextRef = doc(dbService, "rweets", `${rweetObj.id}`);
-        await updateDoc(rweetTextRef, { text: edited });
+        const postTextRef = doc(dbService, "posts", `${postObj.id}`);
+        await updateDoc(postTextRef, { text: edited });
         setEditMode(false);
     };
 
     const onDeleteClick = async () => {
         const ok = window.confirm("Are you sure you want to delete this?");
         if (ok) {
-            await deleteDoc(doc(dbService, "rweets", `${rweetObj.id}`));
-            await deleteObject(ref(storageService, rweetObj.storageUrl));
+            await deleteDoc(doc(dbService, "posts", `${postObj.id}`));
+            await deleteObject(ref(storageService, postObj.storageUrl));
         }
     };
 
@@ -38,7 +38,7 @@ const Rweet = ({ rweetObj, isOwner }) => {
                     <form onSubmit={onSubmit}>
                         <input
                             type="text"
-                            placeholder="Edit your new message."
+                            placeholder="Edit your new post."
                             value={edited}
                             onChange={onChange}
                             required
@@ -49,14 +49,14 @@ const Rweet = ({ rweetObj, isOwner }) => {
                 </>
             ) : (
                 <>
-                    <h4>{rweetObj.text}</h4>
-                    {rweetObj.storageUrl && (
+                    <h4>{postObj.text}</h4>
+                    {postObj.storageUrl && (
                         <img
-                            src={rweetObj.storageUrl}
+                            src={postObj.storageUrl}
                             alt={
-                                rweetObj.text > 20
-                                    ? rweetObj.text.slice(0, 20)
-                                    : rweetObj.text
+                                postObj.text > 20
+                                    ? postObj.text.slice(0, 20)
+                                    : postObj.text
                             }
                         />
                     )}
@@ -72,4 +72,4 @@ const Rweet = ({ rweetObj, isOwner }) => {
     );
 };
 
-export default Rweet;
+export default Post;

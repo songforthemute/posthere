@@ -8,9 +8,9 @@ const Profile = ({ refreshUser, userObj }) => {
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
 
     // 내 포스트 가져오기
-    const getMyRweets = async () => {
+    const getMyPosts = async () => {
         const q = query(
-            collection(dbService, "rweets"),
+            collection(dbService, "posts"),
             where("creatorId", "==", `${userObj.uid}`),
             orderBy("createdAt", "desc")
         );
@@ -21,7 +21,7 @@ const Profile = ({ refreshUser, userObj }) => {
     };
 
     useEffect(() => {
-        getMyRweets();
+        getMyPosts();
     }, [userObj]);
 
     // displayName 변경 파트
