@@ -32,20 +32,31 @@ const Post = ({ postObj, isOwner }) => {
     };
 
     return (
-        <div>
+        <div className="post">
             {isOwner && editMode ? (
                 <>
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={onSubmit} className="container postEdit">
                         <input
                             type="text"
                             placeholder="Edit your new post."
                             value={edited}
                             onChange={onChange}
                             required
+                            autoFocus
+                            className="formInput"
                         />
-                        <input type="submit" value="Update" />
+                        <input
+                            type="submit"
+                            value="Update Post"
+                            className="formBtn"
+                        />
                     </form>
-                    <button onClick={toggleEditMode}>Cancel</button>
+                    <span
+                        onClick={toggleEditMode}
+                        className="formBtn cancelBtn"
+                    >
+                        Cancel
+                    </span>
                 </>
             ) : (
                 <>
@@ -61,10 +72,10 @@ const Post = ({ postObj, isOwner }) => {
                         />
                     )}
                     {isOwner && (
-                        <>
-                            <button onClick={onDeleteClick}>Delete</button>
-                            <button onClick={toggleEditMode}>Edit</button>
-                        </>
+                        <div className="post__actions">
+                            <span onClick={onDeleteClick}>Delete</span>
+                            <span onClick={toggleEditMode}>Edit</span>
+                        </div>
                     )}
                 </>
             )}
