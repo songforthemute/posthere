@@ -19,7 +19,7 @@ const Home = ({ userObj }) => {
     useEffect(() => {
         // 쿼리 & getDocs를 이용하지 않고 snapshot을 이용하면 실시간 렌더 가능
         const q = query(
-            collection(dbService, "rweets"),
+            collection(dbService, "posts"),
             orderBy("createdAt", "desc")
         );
         onSnapshot(q, (snapshot) => {
@@ -42,7 +42,7 @@ const Home = ({ userObj }) => {
             storageUrl = await getDownloadURL(res.ref);
         }
         // try {
-        await addDoc(collection(dbService, "rweets"), {
+        await addDoc(collection(dbService, "posts"), {
             text: post,
             createdAt: Date.now(),
             creatorId: userObj.uid,
