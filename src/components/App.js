@@ -69,7 +69,7 @@ function App() {
             ) : (
                 "Initializing..."
             )}
-            <footer>&copy; {new Date().getFullYear()} Posthis.</footer>
+            <footer>&copy; {new Date().getFullYear()} Posthere.</footer>
         </>
     );
 }

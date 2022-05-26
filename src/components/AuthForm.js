@@ -41,7 +41,7 @@ const AuthForm = () => {
             console.log(data);
         } catch (error) {
             // console.log({ error });
-            setError(error.message);
+            setError(error.message.slice(9));
         }
     };
 
@@ -74,7 +74,10 @@ const AuthForm = () => {
                 {error && <span className="authError">{error}</span>}
             </form>
             <div>
-                <button onClick={toggleAccount} className="authSwitch">
+                <button
+                    onClick={toggleAccount}
+                    className="authInput authSwitch"
+                >
                     {newAccount ? "Sign In" : "Sign Up Now"}
                 </button>
             </div>

@@ -74,13 +74,13 @@ const PostForm = ({ userObj }) => {
                     type="text"
                     value={post}
                     onChange={onChange}
-                    placeholder="What's on your mind?"
+                    placeholder="지금 무슨 일이 벌어지고 있나요?"
                     maxLength={120}
                 />
                 <input
                     type="submit"
                     value="&rarr;"
-                    className="postInput__arro"
+                    className="postInput__arrow"
                 />
             </div>
             <label htmlFor="attach-file" className="postInput__lable">
@@ -95,7 +95,7 @@ const PostForm = ({ userObj }) => {
                 style={{ opacity: 0 }}
             />
             {fileUrl && (
-                <div cclassName="postForm__file">
+                <div className="postForm__file">
                     <img
                         src={fileUrl}
                         alt="Attached"
