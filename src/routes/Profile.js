@@ -1,28 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authService, dbService } from "../firebase";
-import { query, collection, where, getDocs, orderBy } from "firebase/firestore";
+import {
+    query,
+    collection,
+    where,
+    onSnapshot,
+    orderBy,
+} from "firebase/firestore";
 import { updateProfile, signOut } from "firebase/auth";
+import Post from "../components/Post";
 
 const Profile = ({ refreshUser, userObj }) => {
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
+    const [myPosts, setMyPosts] = useState([]);
 
     // 내 포스트 가져오기
-    const getMyPosts = async () => {
+    useEffect(() => {
         const q = query(
             collection(dbService, "posts"),
             where("creatorId", "==", `${userObj.uid}`),
             orderBy("createdAt", "desc")
         );
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            console.log(doc.data());
+        onSnapshot(q, (snapshot) => {
+            const myPostArr = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setMyPosts(myPostArr);
         });
-    };
-
-    useEffect(() => {
-        getMyPosts();
-    }, [userObj]);
+    }, [myPosts, userObj]);
 
     // displayName 변경 파트
     const onChange = (e) => {
@@ -55,20 +62,25 @@ const Profile = ({ refreshUser, userObj }) => {
                 <input
                     className="formInput"
                     type="text"
-                    placeholder="Display name"
+                    placeholder="어떻게 보이고 싶나요?"
                     value={newDisplayName}
                     onChange={onChange}
                     autoFocus
                 />
                 <input
                     type="submit"
-                    value="Update Profile"
+                    value="닉네임 업데이트"
                     className="formBtn"
-                    style={{ marginTop: 10 }}
+                    style={{ marginTop: 15 }}
                 />
             </form>
-            <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
-                Log Out
+            <div style={{ marginTop: 30 }}>
+                {myPosts.map((post) => (
+                    <Post key={post.id} postObj={post} isOwner={true} />
+                ))}
+            </div>
+            <span className="formBtn logOut" onClick={onLogOutClick}>
+                로그아웃
             </span>
         </div>
     );
