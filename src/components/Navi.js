@@ -4,32 +4,18 @@ import { Link } from "react-router-dom";
 const Navi = ({ userObj }) => {
     return (
         <nav>
-            <ul
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    marginTop: 50,
-                }}
-            >
+            <ul className="navi">
                 <li>
-                    <Link to="/" style={{ marginRight: 10 }}>
-                        Home
+                    <Link to="/" className="homeBtn">
+                        <span className="material-symbols-outlined">home</span>
                     </Link>
                 </li>
                 <li>
-                    <Link
-                        to="/profile"
-                        style={{
-                            marginLeft: 10,
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            fontSize: 12,
-                        }}
-                    >
-                        <span style={{ marginTop: 10 }}>
-                            {userObj.displayName}의 Profile
+                    <Link to="/profile" className="profileBtn">
+                        <span className="material-symbols-outlined">
+                            account_circle
                         </span>
+                        <span>{userObj.displayName}의 프로필</span>
                     </Link>
                 </li>
             </ul>
