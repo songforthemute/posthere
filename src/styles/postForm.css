@@ -1,0 +1,86 @@
+/* PostForm */
+.postForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.postInput__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.postInput__input {
+    flex-grow: 1;
+    height: 40px;
+    padding: 0px 20px;
+    color: #ffffff;
+    border: 1px solid #04aaff;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.postInput__arrow {
+    position: absolute;
+    right: 0;
+    background-color: #04aaff;
+    height: 40px;
+    width: 40px;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 20px;
+    color: #ffffff;
+}
+
+.postInput__arrow:hover {
+    transition: all 0.5s ease-in-out;
+    background-color: rgba(0, 0, 0, 0);
+    /* box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.9); */
+    font-weight: 800;
+}
+
+.postInput__lable {
+    color: #04aaff;
+    cursor: pointer;
+}
+
+.postInput__lable span {
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.postInput__lable:hover {
+    transition: all 0.3s ease-in-out;
+    opacity: 0.65;
+}
+
+.postForm__file {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.postForm__file img {
+    height: 80px;
+    width: 80px;
+    border-radius: 17.5px;
+}
+
+.postForm__clear {
+    margin-top: 15px;
+    color: #04aaff;
+    cursor: pointer;
+    text-align: center;
+}
+
+.postForm__clear span {
+    /* margin-right: 10px; */
+    font-size: 12px;
+}

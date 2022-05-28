@@ -1,0 +1,13 @@
+/* Profile */
+.profileForm {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+    padding-bottom: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.logOut {
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 30px;
+}

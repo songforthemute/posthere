@@ -1,0 +1,28 @@
+/* Navi */
+.navi {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.homeBtn {
+    margin-right: 10px;
+}
+
+.profileBtn {
+    display: flex;
+    margin-left: 10px;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+}
+
+.profileBtn span:nth-child(2) {
+    margin-top: 10px;
+}
+
+.homeBtn:hover,
+.profileBtn:hover {
+    transition: all 0.3s ease-in-out;
+    opacity: 0.65;
+}
