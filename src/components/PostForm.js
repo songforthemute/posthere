@@ -17,9 +17,9 @@ const PostForm = ({ userObj }) => {
 
     // 폼 제출
     const onSubmit = async (e) => {
+        e.preventDefault();
         if (post === "") return;
 
-        e.preventDefault();
         let storageUrl = "";
         if (fileUrl !== "") {
             // 업로드된 파일이 존재한다면
@@ -43,9 +43,9 @@ const PostForm = ({ userObj }) => {
             target: { files },
         } = e;
         const file = files[0]; // 한 개 이상의 파일을 받을 수 있지만 input에서 하나의 파일만 받고있음.
-        if (file.size > 10485760 / 11) {
+        if (file && file.size > 10485760 / 2) {
             // 파일 클리어 했을때 콘솔에 에러 이슈 있음!!
-            alert("File size exceeded. Please upload a file less then 10MB.");
+            alert("5MB 이하의 파일만 업로드 가능합니다.");
             onClearFile();
         } else {
             const reader = new FileReader(); // from fileReader & file api by MDN
@@ -74,7 +74,7 @@ const PostForm = ({ userObj }) => {
                     type="text"
                     value={post}
                     onChange={onChange}
-                    placeholder="지금 무슨 일이 벌어지고 있나요?"
+                    placeholder="지금 무슨 일이 일어나고 있나요?"
                     maxLength={120}
                 />
                 <input
@@ -84,7 +84,7 @@ const PostForm = ({ userObj }) => {
                 />
             </div>
             <label htmlFor="attach-file" className="postInput__lable">
-                <span>Add photos</span>
+                <span>사진 추가하기</span>
             </label>
             <input
                 id="attach-file"
@@ -102,7 +102,7 @@ const PostForm = ({ userObj }) => {
                         style={{ backgroundImage: fileUrl }}
                     />
                     <div onClick={onClearFile} className="postForm__clear">
-                        <span>Clear</span>
+                        <span>취소</span>
                     </div>
                 </div>
             )}
