@@ -19,6 +19,7 @@ const AuthForm = () => {
         const {
             target: { name, value },
         } = e;
+
         if (name === "email") setEmail(value);
         else if (name === "password") setPassword(value);
     };
@@ -26,21 +27,15 @@ const AuthForm = () => {
     // 폼 제출 파트
     const onSubmit = async (event) => {
         event.preventDefault();
-        let data;
+
         try {
             const auth = getAuth();
             if (newAccount) {
-                data = await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
+                await createUserWithEmailAndPassword(auth, email, password);
             } else {
-                data = await signInWithEmailAndPassword(auth, email, password);
+                await signInWithEmailAndPassword(auth, email, password);
             }
-            console.log(data);
         } catch (error) {
-            // console.log({ error });
             setError(error.message.slice(9));
         }
     };
@@ -54,7 +49,7 @@ const AuthForm = () => {
                     name="email"
                     value={email}
                     onChange={onChange}
-                    placeholder="Email"
+                    placeholder="이메일"
                     required
                 />
                 <input
@@ -63,13 +58,13 @@ const AuthForm = () => {
                     name="password"
                     value={password}
                     onChange={onChange}
-                    placeholder="Password"
+                    placeholder="비밀번호"
                     required
                 />
                 <input
                     className="authInput authSubmit"
                     type="submit"
-                    value={newAccount ? "Sign Up Now" : "Sign In"}
+                    value={newAccount ? "지금 계정 생성" : "로그인"}
                 />
                 {error && <span className="authError">{error}</span>}
             </form>
@@ -78,7 +73,7 @@ const AuthForm = () => {
                     onClick={toggleAccount}
                     className="authInput authSwitch"
                 >
-                    {newAccount ? "Sign In" : "Sign Up Now"}
+                    {newAccount ? "로그인하기" : "지금 계정 생성하기"}
                 </button>
             </div>
         </>

@@ -69,7 +69,9 @@ function App() {
             ) : (
                 "Initializing..."
             )}
-            <footer>&copy; {new Date().getFullYear()} Posthere.</footer>
+            <footer className="footer">
+                &copy; {new Date().getFullYear()} Posthere.
+            </footer>
         </>
     );
 }
