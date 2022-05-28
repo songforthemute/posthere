@@ -7,6 +7,7 @@ const Post = ({ postObj, isOwner }) => {
     const [editMode, setEditMode] = useState(false);
     const [edited, setEdited] = useState(postObj.text);
 
+    // 편집모드 토글 파트
     const toggleEditMode = () => setEditMode((prev) => !prev);
 
     const onChange = (e) => {
@@ -16,6 +17,7 @@ const Post = ({ postObj, isOwner }) => {
         setEdited(value);
     };
 
+    // 포스트 갱신 파트
     const onSubmit = async (e) => {
         e.preventDefault();
         const postTextRef = doc(dbService, "posts", `${postObj.id}`);
@@ -23,12 +25,24 @@ const Post = ({ postObj, isOwner }) => {
         setEditMode(false);
     };
 
+    // 포스트 삭제 파트
     const onDeleteClick = async () => {
-        const ok = window.confirm("Are you sure you want to delete this?");
+        const ok = window.confirm("이 포스트를 정말 삭제할까요?");
         if (ok) {
             await deleteDoc(doc(dbService, "posts", `${postObj.id}`));
-            await deleteObject(ref(storageService, postObj.storageUrl));
+            if (postObj.storageUrl !== "") {
+                await deleteObject(ref(storageService, postObj.storageUrl));
+            }
         }
+    };
+
+    // 사진 새 탭에서 열기 => 모달 폼에서 열기로 변경 예정
+    const onFileClick = (e) => {
+        const {
+            target: { currentSrc },
+        } = e;
+
+        window.open(currentSrc, "_black");
     };
 
     return (
@@ -38,7 +52,7 @@ const Post = ({ postObj, isOwner }) => {
                     <form onSubmit={onSubmit} className="container postEdit">
                         <input
                             type="text"
-                            placeholder="Edit your new post."
+                            placeholder="새 포스트를 작성해주세요."
                             value={edited}
                             onChange={onChange}
                             required
@@ -47,7 +61,7 @@ const Post = ({ postObj, isOwner }) => {
                         />
                         <input
                             type="submit"
-                            value="Update Post"
+                            value="포스트 업데이트"
                             className="formBtn"
                         />
                     </form>
@@ -55,7 +69,7 @@ const Post = ({ postObj, isOwner }) => {
                         onClick={toggleEditMode}
                         className="formBtn cancelBtn"
                     >
-                        Cancel
+                        돌아가기
                     </span>
                 </>
             ) : (
@@ -69,12 +83,23 @@ const Post = ({ postObj, isOwner }) => {
                                     ? postObj.text.slice(0, 20)
                                     : postObj.text
                             }
+                            onClick={onFileClick}
                         />
                     )}
                     {isOwner && (
                         <div className="post__actions">
-                            <span onClick={onDeleteClick}>Delete</span>
-                            <span onClick={toggleEditMode}>Edit</span>
+                            <span
+                                onClick={onDeleteClick}
+                                className="material-symbols-outlined"
+                            >
+                                delete_forever
+                            </span>
+                            <span
+                                onClick={toggleEditMode}
+                                className="material-symbols-outlined"
+                            >
+                                edit_note
+                            </span>
                         </div>
                     )}
                 </>
