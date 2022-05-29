@@ -3,12 +3,15 @@ import {
     getAuth,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
+    signOut,
 } from "firebase/auth";
+import { authService } from "../firebase";
 
 const AuthForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [signUp, setSignUp] = useState("");
     const [newAccount, setNewAccount] = useState(true);
 
     // sign-in <=> sign-up 토글 파트
@@ -25,13 +28,16 @@ const AuthForm = () => {
     };
 
     // 폼 제출 파트
-    const onSubmit = async (event) => {
-        event.preventDefault();
+    const onSubmit = async (e) => {
+        e.preventDefault();
 
         try {
             const auth = getAuth();
             if (newAccount) {
                 await createUserWithEmailAndPassword(auth, email, password);
+                await signOut(authService);
+                setSignUp("계정 생성에 성공했습니다.");
+                setNewAccount((prev) => !prev);
             } else {
                 await signInWithEmailAndPassword(auth, email, password);
             }
@@ -66,6 +72,7 @@ const AuthForm = () => {
                     type="submit"
                     value={newAccount ? "지금 계정 생성" : "로그인"}
                 />
+                {signUp && <span className="authSignUp">{signUp}</span>}
                 {error && <span className="authError">{error}</span>}
             </form>
             <div>
