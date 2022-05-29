@@ -45,6 +45,28 @@
     opacity: 0.65;
 }
 
+.post__like {
+    display: flex;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.post__likeBtn {
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 3px;
+}
+
+.post__likeCount {
+    font-size: 13px;
+    margin-left: 3px;
+    top: -15px;
+}
+
+/* postAction */
 .post__actions {
     position: absolute;
     right: 6px;

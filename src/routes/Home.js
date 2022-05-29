@@ -32,6 +32,7 @@ const Home = ({ userObj }) => {
                         key={post.id}
                         postObj={post}
                         isOwner={post.creatorId === userObj.uid}
+                        uid={userObj.uid}
                     />
                 ))}
             </div>

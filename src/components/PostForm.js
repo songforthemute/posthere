@@ -31,6 +31,10 @@ const PostForm = ({ userObj }) => {
             text: post,
             createdAt: Date.now(),
             creatorId: userObj.uid,
+            creatorPhotoURL: userObj.photoURL,
+            creatorDisplayName: userObj.displayName,
+            likeList: [],
+            likeCount: 0,
             storageUrl,
         });
         setPost("");

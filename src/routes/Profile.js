@@ -39,6 +39,7 @@ const Profile = ({ refreshUser, userObj }) => {
         setNewDisplayName(value);
     };
 
+    // 프로필 업데이트 제출 파트
     const onSubmit = async (e) => {
         e.preventDefault();
         if (userObj.displayName !== newDisplayName) {
@@ -76,7 +77,12 @@ const Profile = ({ refreshUser, userObj }) => {
             </form>
             <div style={{ marginTop: 30 }}>
                 {myPosts.map((post) => (
-                    <Post key={post.id} postObj={post} isOwner={true} />
+                    <Post
+                        key={post.id}
+                        postObj={post}
+                        isOwner={true}
+                        uid={userObj.uid}
+                    />
                 ))}
             </div>
             <span className="formBtn logOut" onClick={onLogOutClick}>

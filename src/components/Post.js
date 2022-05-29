@@ -1,11 +1,42 @@
 import React, { useState } from "react";
 import { dbService, storageService } from "../firebase";
-import { doc, deleteDoc, updateDoc } from "firebase/firestore";
+import {
+    doc,
+    deleteDoc,
+    updateDoc,
+    increment,
+    arrayUnion,
+    arrayRemove,
+} from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 
-const Post = ({ postObj, isOwner }) => {
+const Post = ({ postObj, isOwner, uid }) => {
     const [editMode, setEditMode] = useState(false);
     const [edited, setEdited] = useState(postObj.text);
+    const [like, setLike] = useState(postObj.likeList.includes(uid));
+
+    const onLike = async () => {
+        const postLikesRef = doc(dbService, "posts", `${postObj.id}`);
+        await updateDoc(postLikesRef, {
+            likeCount: increment(1),
+            likeList: arrayUnion(uid),
+        });
+    };
+
+    const onDislike = async () => {
+        const postLikesRef = doc(dbService, "posts", `${postObj.id}`);
+        await updateDoc(postLikesRef, {
+            likeCount: increment(-1),
+            likeList: arrayRemove(uid),
+        });
+    };
+
+    // 좋아요 클릭 파트
+    const toggleLike = () => {
+        if (!like) onLike();
+        else onDislike();
+        setLike((prev) => !prev);
+    };
 
     // 편집모드 토글 파트
     const toggleEditMode = () => setEditMode((prev) => !prev);
@@ -79,13 +110,29 @@ const Post = ({ postObj, isOwner }) => {
                         <img
                             src={postObj.storageUrl}
                             alt={
-                                postObj.text > 20
-                                    ? postObj.text.slice(0, 20)
+                                postObj.text > 10
+                                    ? postObj.text.slice(0, 10)
                                     : postObj.text
                             }
                             onClick={onFileClick}
                         />
                     )}
+                    <div className="post__like">
+                        <span
+                            className="material-symbols-outlined post__likeBtn"
+                            onClick={toggleLike}
+                            style={
+                                like
+                                    ? { color: "#04aaff" }
+                                    : { color: "rgba(0,0,0,0.5)" }
+                            }
+                        >
+                            favorite
+                        </span>
+                        <span className="post__likeCount">
+                            {postObj.likeCount}
+                        </span>
+                    </div>
                     {isOwner && (
                         <div className="post__actions">
                             <span
