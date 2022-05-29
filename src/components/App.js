@@ -70,7 +70,11 @@ function App() {
                 "Initializing..."
             )}
             <footer className="footer">
-                &copy; {new Date().getFullYear()} Posthere.
+                <div>&copy; {new Date().getFullYear()} Posthere.</div>
+                <div>Contact | {process.env.REACT_APP_CONTACT}</div>
+                <div>
+                    <a href={process.env.REACT_APP_BLOG}>Blog | medium</a>
+                </div>
             </footer>
         </>
     );

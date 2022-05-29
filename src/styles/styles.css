@@ -18,11 +18,20 @@ body {
 }
 
 footer {
-    display: flex;
+    display: flexbox;
     justify-content: center;
+    align-items: center;
     font-weight: 200;
-    margin-top: 30px;
-    color: rgba(255, 255, 255, 0.65);
+    margin-top: 60px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 22px;
+    font-size: 12px;
+    text-align: center;
+}
+
+footer a:hover {
+    transition: all 0.3s ease-in-out;
+    color: #04aaff;
 }
 
 button {
