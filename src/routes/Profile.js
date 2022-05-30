@@ -7,6 +7,8 @@ import {
     where,
     onSnapshot,
     orderBy,
+    updateDoc,
+    doc,
 } from "firebase/firestore";
 import { updateProfile, signOut } from "firebase/auth";
 import Post from "../components/Post";
@@ -42,11 +44,19 @@ const Profile = ({ refreshUser, userObj }) => {
     // 프로필 업데이트 제출 파트
     const onSubmit = async (e) => {
         e.preventDefault();
+
         if (userObj.displayName !== newDisplayName) {
             await updateProfile(authService.currentUser, {
                 displayName: newDisplayName,
             });
-            refreshUser();
+            refreshUser(); // 닉네임 먼저 갱신 후,
+            // 작성한 기존의 포스트들 닉네임 업데이트
+            myPosts.map(async (myPost) => {
+                const postRef = doc(dbService, "posts", `${myPost.id}`);
+                await updateDoc(postRef, {
+                    creatorDisplayName: newDisplayName,
+                });
+            });
         }
     };
 
