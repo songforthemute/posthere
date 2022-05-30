@@ -6,7 +6,7 @@
 }
 
 .post {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     background-color: #ffffff;
     width: 100%;
     max-width: 320px;
@@ -21,23 +21,23 @@
 }
 
 .post h4 {
-    font-size: 13px;
+    font-size: 14px;
     max-width: 240px;
     overflow: scroll;
     line-height: 17px;
 }
 
 .post img {
-    right: -60px;
+    right: -55px;
     top: -10px;
     position: absolute;
     border-radius: 12px;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     margin-top: 10px;
     cursor: pointer;
     border: 1px solid #04aaff;
-    padding: 4px;
+    padding: 3px;
 }
 
 .post img:hover {
@@ -56,13 +56,18 @@
 
 .post__likeBtn {
     cursor: pointer;
-    font-size: 20px;
-    margin-right: 3px;
+    font-size: 18px;
+    margin-right: 2px;
+}
+
+.post__likeBtn:hover {
+    transition: all 0.3s ease-in-out;
+    opacity: 0.65;
 }
 
 .post__likeCount {
-    font-size: 13px;
-    margin-left: 3px;
+    font-size: 12px;
+    margin-left: 2px;
     top: -15px;
 }
 
@@ -79,12 +84,11 @@
 }
 
 .post__actions span:hover {
-    font-weight: 600;
     transition: all 0.15s ease-in-out;
     color: #04aaff;
     /* text-decoration: underline; */
 }
 
 .post__actions span:first-child {
-    margin-right: 5px;
+    margin-right: 2px;
 }

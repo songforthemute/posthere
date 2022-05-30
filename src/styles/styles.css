@@ -11,7 +11,7 @@ input {
 }
 
 body {
-    background-color: #000000;
+    background-color: #191919;
     font-family: "IBM Plex Sans KR", sans-serif;
     font-size: 14px;
     color: #ffffff;
@@ -36,7 +36,7 @@ footer a:hover {
 
 button {
     background-color: #ffffff;
-    color: #000000;
+    color: #191919;
 }
 
 a {
@@ -53,6 +53,15 @@ form {
     opacity: 0.9;
 }
 
+.main {
+    max-width: 890px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
 .container {
     width: 100%;
     min-width: 240px;
@@ -65,10 +74,10 @@ form {
     width: 100%;
     padding: 10px 20px;
     border-radius: 20px;
-    border: 1px solid #000000;
+    border: 1px solid #191919;
     text-align: center;
     background-color: #ffffff;
-    color: #000000;
+    color: #191919;
 }
 
 .formBtn {
