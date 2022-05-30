@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Finder from "./Finder";
 import { authService } from "../firebase";
 import { onAuthStateChanged, updateProfile } from "firebase/auth";
+import Footer from "./Footer";
 
 function App() {
     const [init, setInit] = useState(false);
@@ -67,15 +68,9 @@ function App() {
                     refreshUser={refreshUser}
                 />
             ) : (
-                "Initializing..."
+                <div className="main loading">Initializing...</div>
             )}
-            <footer className="footer">
-                <div>&copy; {new Date().getFullYear()} Posthere.</div>
-                <div>Contact | {process.env.REACT_APP_CONTACT}</div>
-                <div>
-                    <a href={process.env.REACT_APP_BLOG}>Blog | medium</a>
-                </div>
-            </footer>
+            <Footer />
         </>
     );
 }

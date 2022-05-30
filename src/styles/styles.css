@@ -17,23 +17,6 @@ body {
     color: #ffffff;
 }
 
-footer {
-    display: flexbox;
-    justify-content: center;
-    align-items: center;
-    font-weight: 200;
-    margin-top: 60px;
-    color: rgba(255, 255, 255, 0.5);
-    line-height: 22px;
-    font-size: 12px;
-    text-align: center;
-}
-
-footer a:hover {
-    transition: all 0.3s ease-in-out;
-    color: #04aaff;
-}
-
 button {
     background-color: #ffffff;
     color: #191919;
@@ -57,7 +40,7 @@ form {
     max-width: 890px;
     width: 100%;
     margin: 0 auto;
-    margin-top: 80px;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
 }

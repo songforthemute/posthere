@@ -1,0 +1,41 @@
+/* footer */
+footer {
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    font-weight: 200;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 24px;
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+}
+
+footer a:hover {
+    transition: all 0.3s ease-in-out;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer__faqContent {
+    margin: 10px auto;
+    max-width: 280px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer__faqContent div:nth-child(2) {
+    margin-top: 5px;
+    color: tomato;
+}
+
+.footer__faqBtn {
+    cursor: pointer;
+}
+
+.footer__faqBtn:hover {
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease-in-out;
+}
