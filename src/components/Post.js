@@ -10,24 +10,29 @@ import {
 } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 
-const Post = ({ postObj, isOwner, uid }) => {
+const Post = ({ postObj, isOwner, userObj }) => {
     const [editMode, setEditMode] = useState(false);
     const [edited, setEdited] = useState(postObj.text);
-    const [like, setLike] = useState(postObj.likeList.includes(uid));
+    const [like, setLike] = useState(postObj.likeList.includes(userObj.uid));
 
+    // 편집모드 토글 파트
+    const toggleEditMode = () => setEditMode((prev) => !prev);
+
+    // 좋아요 on
     const onLike = async () => {
         const postLikesRef = doc(dbService, "posts", `${postObj.id}`);
         await updateDoc(postLikesRef, {
             likeCount: increment(1),
-            likeList: arrayUnion(uid),
+            likeList: arrayUnion(userObj.uid),
         });
     };
 
+    // 좋아요 off
     const onDislike = async () => {
         const postLikesRef = doc(dbService, "posts", `${postObj.id}`);
         await updateDoc(postLikesRef, {
             likeCount: increment(-1),
-            likeList: arrayRemove(uid),
+            likeList: arrayRemove(userObj.uid),
         });
     };
 
@@ -38,9 +43,7 @@ const Post = ({ postObj, isOwner, uid }) => {
         setLike((prev) => !prev);
     };
 
-    // 편집모드 토글 파트
-    const toggleEditMode = () => setEditMode((prev) => !prev);
-
+    // 포스트 업데이트 input value 인식 파트
     const onChange = (e) => {
         const {
             target: { value },
@@ -67,19 +70,26 @@ const Post = ({ postObj, isOwner, uid }) => {
         }
     };
 
+    // 메타데이터 - 시간 표시
+    const timeConversion = (t) => {
+        const d = new Date(t).toLocaleString("ko-KR");
+        return d.slice(0, -3);
+    };
+
     // 사진 새 탭에서 열기 => 모달 폼에서 열기로 변경 예정
     const onFileClick = (e) => {
         const {
             target: { currentSrc },
         } = e;
 
-        window.open(currentSrc, "_black");
+        window.open(currentSrc, "_blank");
     };
 
     return (
         <div className="post">
             {isOwner && editMode ? (
                 <>
+                    {/* editMode true 일때  */}
                     <form onSubmit={onSubmit} className="container postEdit">
                         <input
                             type="text"
@@ -105,6 +115,7 @@ const Post = ({ postObj, isOwner, uid }) => {
                 </>
             ) : (
                 <>
+                    {/* 포스트 */}
                     <h4>{postObj.text}</h4>
                     {postObj.storageUrl && (
                         <img
@@ -117,6 +128,7 @@ const Post = ({ postObj, isOwner, uid }) => {
                             onClick={onFileClick}
                         />
                     )}
+                    {/* 좋아요 기능 */}
                     <div className="post__like">
                         <span
                             className="material-symbols-outlined post__likeBtn"
@@ -133,19 +145,27 @@ const Post = ({ postObj, isOwner, uid }) => {
                             {postObj.likeCount}
                         </span>
                     </div>
+                    {/* 포스트 메타데이터 */}
+                    <div className="post__meta">
+                        <span className="post__meta__postedBy">
+                            posted by {postObj.creatorDisplayName},{" "}
+                            {timeConversion(postObj.createdAt)}
+                        </span>
+                    </div>
+                    {/* 포스트 부가기능 - 삭제 & 수정 */}
                     {isOwner && (
                         <div className="post__actions">
-                            <span
-                                onClick={onDeleteClick}
-                                className="material-symbols-outlined"
-                            >
-                                delete_forever
-                            </span>
                             <span
                                 onClick={toggleEditMode}
                                 className="material-symbols-outlined"
                             >
                                 edit_note
+                            </span>
+                            <span
+                                onClick={onDeleteClick}
+                                className="material-symbols-outlined"
+                            >
+                                delete_forever
                             </span>
                         </div>
                     )}

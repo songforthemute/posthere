@@ -81,7 +81,7 @@ const Profile = ({ refreshUser, userObj }) => {
                         key={post.id}
                         postObj={post}
                         isOwner={true}
-                        uid={userObj.uid}
+                        userObj={userObj}
                     />
                 ))}
             </div>

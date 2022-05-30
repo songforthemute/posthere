@@ -9,11 +9,11 @@ const Home = ({ userObj }) => {
 
     // 포스트 리얼타임 렌더 파트
     useEffect(() => {
-        // 쿼리 & getDocs를 이용하지 않고 snapshot을 이용하면 실시간 렌더 가능
         const q = query(
             collection(dbService, "posts"),
             orderBy("createdAt", "desc")
         );
+        // getDocs를 이용하지 않고 snapshot을 이용하면 실시간 렌더 가능
         onSnapshot(q, (snapshot) => {
             const postArr = snapshot.docs.map((doc) => ({
                 id: doc.id,
@@ -26,13 +26,13 @@ const Home = ({ userObj }) => {
     return (
         <div className="container">
             <PostForm userObj={userObj} />
-            <div style={{ marginTop: 30 }}>
+            <div style={{ marginTop: 15 }}>
                 {posts.map((post) => (
                     <Post
                         key={post.id}
                         postObj={post}
                         isOwner={post.creatorId === userObj.uid}
-                        uid={userObj.uid}
+                        userObj={userObj}
                     />
                 ))}
             </div>

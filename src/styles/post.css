@@ -71,6 +71,22 @@
     top: -15px;
 }
 
+/* poatMetadatas */
+.post__meta {
+    display: flex;
+    position: absolute;
+    top: 85px;
+    right: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.post__meta__postedBy {
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 200;
+    font-size: 12px;
+}
+
 /* postAction */
 .post__actions {
     position: absolute;
