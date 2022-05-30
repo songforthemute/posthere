@@ -40,7 +40,7 @@
     padding: 3px;
 }
 
-.post img:hover {
+.post__file:hover {
     transition: all 0.3s ease-in-out;
     opacity: 0.65;
 }
