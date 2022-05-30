@@ -119,6 +119,7 @@ const Post = ({ postObj, isOwner, userObj }) => {
                     <h4>{postObj.text}</h4>
                     {postObj.storageUrl && (
                         <img
+                            className="post__file"
                             src={postObj.storageUrl}
                             alt={
                                 postObj.text > 10
@@ -148,8 +149,14 @@ const Post = ({ postObj, isOwner, userObj }) => {
                     {/* 포스트 메타데이터 */}
                     <div className="post__meta">
                         <span className="post__meta__postedBy">
-                            posted by {postObj.creatorDisplayName},{" "}
-                            {timeConversion(postObj.createdAt)}
+                            <span>posted by </span>
+                            <img
+                                src={postObj.creatorPhotoURL}
+                                alt="profile"
+                                className="post__meta__photo"
+                            />{" "}
+                            <span>{postObj.creatorDisplayName}, </span>
+                            <span>{timeConversion(postObj.createdAt)}</span>
                         </span>
                     </div>
                     {/* 포스트 부가기능 - 삭제 & 수정 */}
