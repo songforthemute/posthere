@@ -62,15 +62,17 @@ function App() {
     return (
         <>
             {init ? (
-                <Finder
-                    isLoggedIn={Boolean(authService.currentUser)}
-                    userObj={userObj}
-                    refreshUser={refreshUser}
-                />
+                <>
+                    <Finder
+                        isLoggedIn={Boolean(authService.currentUser)}
+                        userObj={userObj}
+                        refreshUser={refreshUser}
+                    />
+                    {userObj && <Footer uid={userObj.uid} />}
+                </>
             ) : (
                 <div className="main loading">Initializing...</div>
             )}
-            <Footer />
         </>
     );
 }
