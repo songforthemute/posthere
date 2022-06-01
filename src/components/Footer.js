@@ -38,8 +38,8 @@ const Footer = ({ uid }) => {
                 <div className="footer__faqContent">
                     <div className="footer__faqBtn" onClick={onRefresh}>
                         서버에 문제가 있거나, 트래픽 혹은 대역폭에 문제가 생겨
-                        느려질 수 있습니다. 여기를 누르시거나 페이지를 새로고침
-                        후 다시 시도해주세요.
+                        사진 로딩을 실패하거나, 느려질 수 있습니다. 여기를
+                        누르시거나 페이지를 새로고침 후 다시 시도해주세요.
                     </div>
                     <div className="footer__faqBtn" onClick={toggleFaq}>
                         - 닫기 -
