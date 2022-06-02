@@ -7,7 +7,7 @@ footer {
     margin-top: 30px;
     margin-bottom: 30px;
     color: rgba(255, 255, 255, 0.5);
-    line-height: 24px;
+    line-height: 26px;
     font-size: 12px;
     text-align: center;
     position: relative;
@@ -39,4 +39,22 @@ footer a:hover {
     font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
     transition: all 0.3s ease-in-out;
+}
+
+.footer__scrolltop {
+    margin: 40px auto;
+    width: 35px;
+    height: 35px;
+    background-color: #6464ff;
+    border-radius: 25px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.footer__scrolltop:hover {
+    transition: all 0.3s ease-in-out;
+    opacity: 0.65;
 }

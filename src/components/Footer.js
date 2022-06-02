@@ -28,8 +28,16 @@ const Footer = ({ uid }) => {
         }
     };
 
+    // 맨 위로 스크롤
+    const onScrollTop = () => {
+        window.scrollTo(window.scrollX, 0);
+    };
+
     return (
         <footer className="footer">
+            <div className="footer__scrolltop" onClick={onScrollTop}>
+                &uarr;
+            </div>
             <div>&copy; {new Date().getFullYear()} Posthere.</div>
             <div className="footer__faq footer__faqBtn" onClick={toggleFaq}>
                 FAQ | 느리거나 잘 작동하지 않아요.
