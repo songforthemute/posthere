@@ -3,6 +3,7 @@ import Finder from "./Finder";
 import { authService } from "../firebase";
 import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import Footer from "./Footer";
+import Loading from "./Loading";
 
 function App() {
     const [init, setInit] = useState(false);
@@ -23,6 +24,7 @@ function App() {
                     updateProfile(user, {
                         displayName: displayNameGenerator(user.email),
                     });
+                // 기본 프로필 사진 설정 파트
                 if (!user.photoURL)
                     updateProfile(user, {
                         photoURL: process.env.REACT_APP_PHOTO_URL,
@@ -71,7 +73,7 @@ function App() {
                     {userObj && <Footer uid={userObj.uid} />}
                 </>
             ) : (
-                <div className="main loading">Initializing...</div>
+                <Loading />
             )}
         </>
     );

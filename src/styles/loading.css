@@ -1,0 +1,43 @@
+.loading__container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+.loading__counter {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 300;
+    top: 35%;
+    position: fixed;
+}
+
+@keyframes spinner {
+    from {
+        transform: translate(-50%, -50%) rotate(0);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.loading__circle {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border: 15px solid rgba(0, 0, 0, 0.15);
+    border-top: 15px solid #6464ff;
+    border-radius: 50em;
+    animation-name: spinner;
+    animation-duration: 0.75s;
+    animation-iteration-count: infinite;
+}
