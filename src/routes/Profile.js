@@ -102,6 +102,7 @@ const Profile = ({ refreshUser, userObj }) => {
             await updateProfile(authService.currentUser, {
                 photoURL: storagePhotoURL,
             });
+            // refreshUser();
             // 작성한 기존의 포스트들 프로필사진 업데이트
             myPosts.map(async (myPost) => {
                 const postRef = doc(dbService, "posts", `${myPost.id}`);

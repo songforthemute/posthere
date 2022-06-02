@@ -11,7 +11,7 @@ input {
 }
 
 body {
-    background-color: #191919;
+    background-color: #171717;
     font-family: "IBM Plex Sans KR", sans-serif;
     font-size: 14px;
     color: #ffffff;
@@ -19,7 +19,7 @@ body {
 
 button {
     background-color: #ffffff;
-    color: #191919;
+    color: #171717;
 }
 
 a {
@@ -57,10 +57,10 @@ form {
     width: 100%;
     padding: 10px 20px;
     border-radius: 20px;
-    border: 1px solid #191919;
+    border: 1px solid #171717;
     text-align: center;
     background-color: #ffffff;
-    color: #191919;
+    color: #171717;
 }
 
 .formBtn {
@@ -70,8 +70,9 @@ form {
     text-align: center;
     color: #ffffff;
     border-radius: 20px;
-    background-color: #04aaff;
-    border: 1px solid #04aaff;
+    font-weight: 400;
+    background-color: #6464ff;
+    border: 1px solid #6464ff;
     cursor: pointer;
 }
 
@@ -91,5 +92,5 @@ form {
 /* Google Fonts */
 .material-symbols-outlined {
     font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 100, "opsz" 48;
-    color: #04aaff;
+    color: #6464ff;
 }

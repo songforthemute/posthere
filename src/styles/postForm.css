@@ -21,7 +21,7 @@
     height: 40px;
     padding: 0px 20px;
     color: #ffffff;
-    border: 1px solid #04aaff;
+    border: 1px solid #6464ff;
     border-radius: 20px;
     font-weight: 500;
     font-size: 12px;
@@ -30,7 +30,7 @@
 .postInput__arrow {
     position: absolute;
     right: 0;
-    background-color: #04aaff;
+    background-color: #6464ff;
     height: 40px;
     width: 40px;
     padding: 10px 0px;
@@ -43,11 +43,11 @@
     transition: all 0.5s ease-in-out;
     background-color: rgba(0, 0, 0, 0);
     /* box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.9); */
-    font-weight: 800;
+    font-weight: 500;
 }
 
 .postInput__lable {
-    color: #04aaff;
+    color: #6464ff;
     cursor: pointer;
 }
 
@@ -75,7 +75,7 @@
 
 .postForm__clear {
     margin-top: 15px;
-    color: #04aaff;
+    color: #6464ff;
     cursor: pointer;
     text-align: center;
 }

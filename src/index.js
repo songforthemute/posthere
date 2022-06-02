@@ -8,6 +8,7 @@ import "./styles/profile.css";
 import "./styles/auth.css";
 import "./styles/navi.css";
 import "./styles/footer.css";
+import "./styles/loading.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);

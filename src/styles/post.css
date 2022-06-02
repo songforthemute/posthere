@@ -2,7 +2,7 @@
 .postEdit .formBtn {
     cursor: pointer;
     margin-top: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .post {
@@ -17,7 +17,7 @@
     flex-direction: column;
     color: rgba(0, 0, 0, 0.9);
     min-height: 75px;
-    padding-bottom: 40px;
+    /* padding-bottom: 40px; */
 }
 
 .post h4 {
@@ -36,7 +36,7 @@
     height: 48px;
     margin-top: 10px;
     cursor: pointer;
-    border: 1px solid #04aaff;
+    border: 2px solid #6464ff;
     padding: 3px;
 }
 
@@ -110,7 +110,7 @@
 
 .post__actions span:hover {
     transition: all 0.15s ease-in-out;
-    color: #04aaff;
+    color: #6464ff;
     /* text-decoration: underline; */
 }
 

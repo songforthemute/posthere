@@ -136,7 +136,7 @@ const Post = ({ postObj, isOwner, userObj }) => {
                             onClick={toggleLike}
                             style={
                                 like
-                                    ? { color: "#04aaff" }
+                                    ? { color: "#6464ff" }
                                     : { color: "rgba(0,0,0,0.5)" }
                             }
                         >
