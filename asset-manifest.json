@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/posthere/static/css/main.658e7f90.css",
+    "main.js": "/posthere/static/js/main.baac48a3.js",
+    "index.html": "/posthere/index.html",
+    "main.658e7f90.css.map": "/posthere/static/css/main.658e7f90.css.map",
+    "main.baac48a3.js.map": "/posthere/static/js/main.baac48a3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.658e7f90.css",
+    "static/js/main.baac48a3.js"
+  ]
+}
