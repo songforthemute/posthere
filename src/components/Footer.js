@@ -8,20 +8,16 @@ const Footer = ({ uid }) => {
 
     // faq on & off 토글 파트
     const toggleFaq = () => {
-        setFaq((prev) => {
-            if (prev === false) onScrollBottom();
-            prev = !prev;
-        });
+        setFaq((prev) => !prev);
+        if (!faq) onScrollBottom();
     };
     // faq 클릭시 새로고침
     const onRefresh = () => window.location.reload();
 
     // 회원탈퇴 on & off 토글 파트
     const toggleWithdraw = () => {
-        setWithdraw((prev) => {
-            if (prev === false) onScrollBottom();
-            prev = !prev;
-        });
+        setWithdraw((prev) => !prev);
+        if (!withdraw) onScrollBottom();
     };
     // 회원탈퇴 기능
     const onWithdraw = async () => {
@@ -42,9 +38,9 @@ const Footer = ({ uid }) => {
     const onScrollTop = () => {
         window.scrollTo(window.scrollX, 0);
     };
-    // 맨 아래 스크롤
+
     const onScrollBottom = () => {
-        window.scrollTo(window.scrollX, window.scrollY + 100);
+        window.scrollTo(window.scrollX, window.scrollY + 500);
     };
 
     return (
