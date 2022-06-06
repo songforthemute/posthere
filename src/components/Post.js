@@ -77,12 +77,12 @@ const Post = ({ postObj, isOwner, userObj }) => {
     };
 
     // 사진 새 탭에서 열기 => 모달 폼에서 열기로 변경 예정
-    const onFileClick = (e) => {
-        const {
-            target: { currentSrc },
-        } = e;
+    const onFileClick = () => {
+        // const {
+        //     target: { currentSrc },
+        // } = e;
 
-        window.open(currentSrc, "_blank");
+        window.open(postObj.storageUrl, "_blank");
     };
 
     return (
@@ -117,7 +117,7 @@ const Post = ({ postObj, isOwner, userObj }) => {
                 <>
                     {/* 포스트 */}
                     <h4>{postObj.text}</h4>
-                    {postObj.storageUrl && (
+                    {/* {postObj.storageUrl && (
                         <img
                             className="post__file"
                             src={postObj.storageUrl}
@@ -128,7 +128,7 @@ const Post = ({ postObj, isOwner, userObj }) => {
                             }
                             onClick={onFileClick}
                         />
-                    )}
+                    )} */}
                     {/* 좋아요 기능 */}
                     <div className="post__like">
                         <span
@@ -160,22 +160,33 @@ const Post = ({ postObj, isOwner, userObj }) => {
                         </span>
                     </div>
                     {/* 포스트 부가기능 - 삭제 & 수정 */}
-                    {isOwner && (
-                        <div className="post__actions">
+                    <div className="post__actions">
+                        {postObj.storageUrl && (
                             <span
-                                onClick={toggleEditMode}
-                                className="material-symbols-outlined"
+                                onClick={onFileClick}
+                                className="material-symbols-outlined post__img"
+                                style={{ color: "#6464ff" }}
                             >
-                                edit_note
+                                image
                             </span>
-                            <span
-                                onClick={onDeleteClick}
-                                className="material-symbols-outlined"
-                            >
-                                delete_forever
-                            </span>
-                        </div>
-                    )}
+                        )}
+                        {isOwner && (
+                            <>
+                                <span
+                                    onClick={toggleEditMode}
+                                    className="material-symbols-outlined"
+                                >
+                                    edit_note
+                                </span>
+                                <span
+                                    onClick={onDeleteClick}
+                                    className="material-symbols-outlined"
+                                >
+                                    delete_forever
+                                </span>
+                            </>
+                        )}
+                    </div>
                 </>
             )}
         </div>

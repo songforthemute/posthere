@@ -22,12 +22,12 @@
 
 .post h4 {
     font-size: 14px;
-    max-width: 240px;
+    max-width: 220px;
     overflow: scroll;
     line-height: 17px;
 }
 
-.post__file {
+/* .post__file {
     right: -55px;
     top: -10px;
     position: absolute;
@@ -43,7 +43,7 @@
 .post__file:hover {
     transition: all 0.3s ease-in-out;
     opacity: 0.65;
-}
+} */
 
 .post__like {
     display: flex;
@@ -106,14 +106,20 @@
 .post__actions span {
     color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    font-size: 23px;
 }
 
 .post__actions span:hover {
     transition: all 0.15s ease-in-out;
     color: #6464ff;
-    /* text-decoration: underline; */
+    text-decoration: underline;
 }
 
 .post__actions span:first-child {
-    margin-right: 2px;
+    margin-right: 3px;
+}
+
+.post__img:hover {
+    transition: all 0.15s ease-in-out;
+    opacity: 0.65;
 }
