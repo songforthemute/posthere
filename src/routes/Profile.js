@@ -133,10 +133,9 @@ const Profile = ({ refreshUser, userObj }) => {
                 <input
                     className="formInput"
                     type="text"
-                    placeholder="어떻게 보이고 싶나요?"
+                    placeholder="어떻게 보여지고 싶나요?"
                     value={newDisplayName}
                     onChange={onChange}
-                    autoFocus
                 />
                 <input
                     type="submit"

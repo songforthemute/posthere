@@ -11,9 +11,9 @@
 }
 
 .loading__counter {
-    color: #ffffff;
+    color: #eeeeef;
     font-size: 32px;
-    font-weight: 300;
+    font-weight: 500;
     top: 35%;
     position: fixed;
 }
