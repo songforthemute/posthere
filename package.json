@@ -39,8 +39,5 @@
             "last 1 safari version"
         ]
     },
-    "devDependencies": {
-        "dotenv": "^16.0.1"
-    },
     "homepage": "https://songforthemute.github.io/posthere"
 }
