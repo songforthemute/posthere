@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/posthere/static/css/main.954e0cc7.css",
-    "main.js": "/posthere/static/js/main.d75510a2.js",
+    "main.css": "/posthere/static/css/main.c2b00c0b.css",
+    "main.js": "/posthere/static/js/main.63afeb8b.js",
     "index.html": "/posthere/index.html",
-    "main.954e0cc7.css.map": "/posthere/static/css/main.954e0cc7.css.map",
-    "main.d75510a2.js.map": "/posthere/static/js/main.d75510a2.js.map"
+    "main.c2b00c0b.css.map": "/posthere/static/css/main.c2b00c0b.css.map",
+    "main.63afeb8b.js.map": "/posthere/static/js/main.63afeb8b.js.map"
   },
   "entrypoints": [
-    "static/css/main.954e0cc7.css",
-    "static/js/main.d75510a2.js"
+    "static/css/main.c2b00c0b.css",
+    "static/js/main.63afeb8b.js"
   ]
 }
