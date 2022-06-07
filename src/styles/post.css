@@ -11,11 +11,11 @@
     width: 100%;
     max-width: 320px;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12.5px;
     position: relative;
     display: flex;
     flex-direction: column;
-    color: rgba(0, 0, 0, 0.9);
+    color: #171717;
     min-height: 75px;
     /* padding-bottom: 40px; */
 }
@@ -24,7 +24,9 @@
     font-size: 14px;
     max-width: 220px;
     overflow: hidden;
-    line-height: 17px;
+    line-height: 18px;
+    font-weight: 500;
+    /* letter-spacing: 0.1px; */
 }
 
 /* .post__file {
@@ -48,7 +50,7 @@
 .post__like {
     display: flex;
     position: absolute;
-    top: 50px;
+    bottom: 10px;
     right: 10px;
     justify-content: center;
     align-items: center;
@@ -84,7 +86,8 @@
 .post__meta__postedBy {
     color: rgba(255, 255, 255, 0.65);
     font-weight: 200;
-    font-size: 12px;
+    font-size: 12.5px;
+    letter-spacing: 0.1px;
     /* line-height: 16px; */
 }
 

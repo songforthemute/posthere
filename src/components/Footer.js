@@ -87,10 +87,11 @@ const Footer = ({ uid }) => {
                     </div>
                 </div>
             )}
+            <div>Posthere는 모바일 환경에 최적화되어있습니다.</div>
             <div>Contact | {process.env.REACT_APP_CONTACT}</div>
-            <div>
+            {/* <div>
                 <a href={process.env.REACT_APP_BLOG}>Blog | medium</a>
-            </div>
+            </div> */}
         </footer>
     );
 };
