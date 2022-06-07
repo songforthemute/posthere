@@ -23,7 +23,7 @@
 .post h4 {
     font-size: 14px;
     max-width: 220px;
-    overflow: scroll;
+    overflow: hidden;
     line-height: 17px;
 }
 
