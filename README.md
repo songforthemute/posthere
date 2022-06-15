@@ -4,9 +4,9 @@
 
 포스팅 기반의 Social Network Service Application을 목표로 계획했으며, 모바일 환경에 최적화되게끔 설계했습니다.
 
-프로젝트 링크 : [Posthere]("https://songforthemute.github.io/posthere/")
+프로젝트 링크 : [https://songforthemute.github.io/posthere/]("https://songforthemute.github.io/posthere/")
 
-미디엄 블로그 링크 : [medium]("https://medium.com/@songforthemute")
+미디엄 블로그 링크 : [https://medium.com/@songforthemute]("https://medium.com/@songforthemute")
 
 ---
 
@@ -65,7 +65,7 @@
 
 ### `npm start`
 
-프로젝트를 개발 모드로 실행할 수 있습니다. [localhost]("http://localhost:3000") 환경에서 실행되며, 기본 포트 넘버는 3000입니다.
+프로젝트를 개발 모드로 실행할 수 있습니다. [http://localhost:3000]("http://localhost:3000") 환경에서 실행되며, 기본 포트 넘버는 3000입니다.
 
 ### `npm build`
 
